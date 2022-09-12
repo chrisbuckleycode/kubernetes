@@ -11,6 +11,12 @@ Enterprise-level Kubernetes, a work-in-progress project.
 - Idempotent: Terraform
 - See [Terraform AWS EKS Blueprints](https://github.com/aws-ia/terraform-aws-eks-blueprints), [Hashicorp Terraform EKS module](https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest)
 
+- Install az cli [link](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+- Set up Terraform for Azure (including service principal and remote state storage account key) [link](https://docs.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure?tabs=bash)
+
+az ad sp create-for-rbac --name <service_principal_name> --role Contributor --scopes /subscriptions/<subscription_id>
+
+
 ## Load Balancing/DNS
 
 ## Authentication
