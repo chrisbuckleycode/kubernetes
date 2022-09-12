@@ -1,0 +1,10 @@
+planfile
+
+**/.terraform/*
+
+crash.log
+crash.*.log
+
+.terraform.lock.hcl
+
+backend.conf
