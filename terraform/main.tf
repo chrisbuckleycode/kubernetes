@@ -1,3 +1,4 @@
+/*
 resource "azurerm_resource_group" "main" {
   name     = "RG_kubernetes_cluster_01"
   location = var.location
@@ -23,4 +24,18 @@ resource "azurerm_kubernetes_cluster" "main" {
   tags = {
     Environment = "Production"
   }
+}
+*/
+
+resource "azurerm_resource_group" "main" {
+  name     = "RG_aks01"
+  location = var.location
+}
+
+resource "azurerm_container_registry" "acr" {
+  name                = "containerRegistry798178197"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  sku                 = "Standard"
+  admin_enabled       = false
 }
