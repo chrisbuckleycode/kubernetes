@@ -4,10 +4,10 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 }
 
-resource "azurerm_kubernetes_cluster" "main" {
+resource "azurerm_kubernetes_cluster" "aks01" {
   name                = "aks01"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  resource_group_name = azurerm_resource_group.aks01.name
   dns_prefix          = "aks01"
 
   default_node_pool {
@@ -32,10 +32,15 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 }
 
+resource "azurerm_resource_group" "main" {
+  name     = "RG_acr01"
+  location = var.location
+}
+
+
 resource "azurerm_container_registry" "acr" {
   name                = "containerRegistry798178197"
   resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  location            = var.location
   sku                 = "Standard"
-  admin_enabled       = false
 }
