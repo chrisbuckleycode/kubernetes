@@ -1,14 +1,37 @@
-# kubernetes
+# Kubernetes DevOps Environment
 
-Enterprise-level Kubernetes, a work-in-progress project.
+This repo is code and instructions to help you deploy a Kubernetes cluster and supporting infrastructure. Intended for educational purposes and kept as simple as possible.
 
-## Table of Contents
+This is an ever-work-in-progress project under continual improvement.
+
+# Table of Contents
 
 --- placeholder ---
 
-## Kubernetes Cluster Provisioning
+# Cluster Provisioning - Terraform
+
+Infrastructure-as-code is preferred (though CLI has it's place). We choose Terraform and Azure to begin with.
+
+## Azure Kubernetes Concepts
+
+* Terraform API calls will be issued by an Azure "service principal", an application identity.
+* Almost all Azure resources exist inside "resource groups".
+* An Azure kubernetes cluster and container registry must be paired to interact with each other.
+
+## Prerequisites
+
+* Object storage blob ("bucket") for remote state storage.
+* Service principal permissioned to run API calls from Terraform.
+* Key vault (secrets management) for Terraform and other purposes.
+
+section in progress...
+
+
+
+
+
 - CLI commands: eksctl cli (ALB controller, nginx ingress, nodeport, Route53 external DNS controller). az aks cli.
-- Idempotent: Terraform
+
 - See [Terraform AWS EKS Blueprints](https://github.com/aws-ia/terraform-aws-eks-blueprints), [Hashicorp Terraform EKS module](https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest)
 
 - Install az cli [link](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
@@ -16,29 +39,32 @@ Enterprise-level Kubernetes, a work-in-progress project.
 
 az ad sp create-for-rbac --name <service_principal_name> --role Contributor --scopes /subscriptions/<subscription_id>
 
+# To-Do List
 
-## Load Balancing/DNS
+Remaining items:
 
-## Authentication
-- e.g. OpenID connect, LDAP
+* Kubernetes
+  * Private/advanced cluster
+  * SSL certificate
+  * Authentication e.g. OpenID connect, LDAP
+  * DNS
+  * RBAC policies and auditing
+  * Secrets
+  * Helm Charts
+  * AWS cluster
+  * CLI cluster creation (incl. eksctl)
+* CI/CD
+  * GitHub Actions Terraform CD pipeline
+  * GitHub Actions Image build and push CI pipeline
+  * GitHub Actions Application deploy CD pipeline (kubectl)
+  * Argo CD
+* Configuration Management
+  * Ansible node configuration  
+* Backups of workloads
+* Observability/Monitoring
 
-## RBAC policies and auditing
 
-## Backing up workloads
-
-## Deploying apps
-
-## Secrets
-
-## Monitoring, Logging & Observability
-
-## CI/CD
-- GitHub Actions, Helm
-- Argo CD
-
-
-
-## Reference Material
+# Reference Material (unsorted)
 
 - [Fast Kubernetes](https://github.com/omerbsezer/Fast-Kubernetes)
 - [Azure Samples - AKS Voting App](https://github.com/Azure-Samples/aks-voting-app)
