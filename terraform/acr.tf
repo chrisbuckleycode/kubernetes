@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "acr01" {
 }
 
 resource "azurerm_container_registry" "acr01" {
-  name                = "containerRegistry798178197"
+  name                = "containerRegistry798178197"   # must be globally unique
   resource_group_name = azurerm_resource_group.acr01.name
   location            = var.location
   sku                 = "Standard"
